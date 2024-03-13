@@ -1,0 +1,24 @@
+{
+  "name": "multilab",
+  "version": "1.0.0",
+  "description": "This application includes solutions to practical labs for several disciplines: “Fundamentals of programming languages”; \"Theory of Algorithms\"; \"Development of applications with a graphical interface.\" I plan to use this app for other disciplines, to be continued...",
+  "main": "app.js",
+  "scripts": {
+    "test": "test start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/al-kos/multilabs.git"
+  },
+  "keywords": [
+    "Programming",
+    "Algorithms",
+    "UI"
+  ],
+  "author": "aleksei-kosenko@mail.ru",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/al-kos/multilabs/issues"
+  },
+  "homepage": "https://github.com/al-kos/multilabs#readme"
+}
