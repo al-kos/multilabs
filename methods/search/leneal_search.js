@@ -5,8 +5,9 @@ let randomArrayGenerator = new RandomArrayGenerator(100, -5, 5)
 let randomArray = randomArrayGenerator.generateRandomArray()
 
 function linearSearchWithWhile(array, element) {
-  start_index = 0 //Стартовый индекс
   console.log(`Поиск элемента = ${element}. Цикл while.`)
+
+  start_index = 0
   while ((start_index < array.length) & (array[start_index] != element)) {
     start_index++
   }
@@ -20,6 +21,8 @@ function linearSearchWithWhile(array, element) {
 }
 
 function linearSearchWithFor(array, element) {
+  console.log(`Поиск элемента = ${element}. Цикл for.`)
+
   for (i = 0; i < array.length; i++) {
     if (array[i] == element) {
       console.log(`Индекс искомого элемента ${element}: ${i}`)

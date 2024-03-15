@@ -39,7 +39,7 @@ class RandomArrayGenerator {
           .slice(-10)}`,
       )
     }
-    return array
+    return array.filter((element) => element !== undefined)
   }
 }
 
