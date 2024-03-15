@@ -36,4 +36,5 @@ module.exports = function generateRandomArray(arrLength, minLimit, maxLimit) {
         .slice(-10)}`,
     )
   }
+  return array
 }

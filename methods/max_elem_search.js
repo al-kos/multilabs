@@ -1,3 +1,5 @@
+const randomArray = require('./random_arr_gen')(100, -10, 10)
+
 function findMaxElement(arr) {
   let maxElement = arr[0]
 
@@ -6,9 +8,8 @@ function findMaxElement(arr) {
       maxElement = arr[i]
     }
   }
-
+  console.log(maxElement)
   return maxElement
 }
 
-let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-console.log(findMaxElement(arr)) // 10
+findMaxElement(randomArray)
