@@ -43,5 +43,4 @@ class RandomArrayGenerator {
   }
 }
 
-let randomArrayGenerator = new RandomArrayGenerator(10, 1, 10)
-let array = randomArrayGenerator.generateRandomArray()
+module.exports = RandomArrayGenerator

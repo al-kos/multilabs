@@ -3,7 +3,7 @@
 */
 
 // Создание массива случайных целых чисел
-module.exports = function generateRandomArray(arrLength, minLimit, maxLimit) {
+function generateRandomArray(arrLength, minLimit, maxLimit) {
   // Создание массива пустых элементов, длинной arrLength
   let array = Array(arrLength).fill(undefined)
   // Создание случайного числа непустых элементов в массиве
@@ -15,7 +15,6 @@ module.exports = function generateRandomArray(arrLength, minLimit, maxLimit) {
         Math.floor(Math.random() * (maxLimit - minLimit + 1)) + minLimit
     }
   }
-
   console.log(`Длина массива: ${array.length}`)
   console.log(
     `Количество непустых элементов: ${
@@ -38,3 +37,5 @@ module.exports = function generateRandomArray(arrLength, minLimit, maxLimit) {
   }
   return array
 }
+
+module.exports = generateRandomArray
