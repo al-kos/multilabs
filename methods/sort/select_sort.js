@@ -1,6 +1,6 @@
 const RandomArrayGenerator = require('../../classes/RandomArrayGenerator')
 
-let randomArrayGenerator = new RandomArrayGenerator(100, -5, 5)
+let randomArrayGenerator = new RandomArrayGenerator(100, -10, 10)
 
 let randomArray = randomArrayGenerator.generateRandomArray()
 
