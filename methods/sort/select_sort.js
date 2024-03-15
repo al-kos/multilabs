@@ -15,7 +15,9 @@ function selectionSort(array) {
     }
     ;[array[i], array[min_index]] = [array[min_index], array[i]]
   }
-  console.log(array)
+  console.log(
+    `Исходный массив отсортирован по возрастанию методом сортировки выбором: \n${array}`,
+  )
   return array
 }
 
