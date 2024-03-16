@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IST-2022</title>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+  <body>
+    <h1>Title</h1>
+    <h2>Subtitle</h2>
+
+    <h3>description</h3>
+    <p>
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id praesentium
+      perferendis veritatis quidem. Possimus dolorem repudiandae cum sequi fuga
+      quibusdam earum illo veniam, iure, nesciunt harum, labore officia delectus
+      laborum.
+    </p>
+
+    <div class="container">
+      <fieldset>
+        <legend>
+          Формирование массива случайных целых чисел заданного размера
+        </legend>
+        <div class="block input">
+          <form class="form">
+            <label for="lenLimit"> Введите ограничение длины массива: </label>
+            <input type="text" id="lenLimit" name="lenLimit" />
+
+            <br />
+
+            <label for="minLimit">
+              Введите минимальное ограничение значения элемента массива
+            </label>
+            <input type="text" id="minLimit" name="minLimit" />
+
+            <br />
+
+            <label for="maxLimit"
+              >Введите максимальное ограничение значения элемента
+              массива:</label
+            >
+            <input type="text" id="maxLimit" name="maxLimit" /><br /><br />
+            <input type="submit" value="Сгенерировать массив" />
+          </form>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Сортировка массива</legend>
+        <div class="block sorting">
+          <form class="form">
+            <ul>
+              <li>
+                <input type="radio" name="sort_type" value="selectionSort" />
+                <label for="selectionSort">Сортировка выбором</label>
+              </li>
+              <li>
+                <input type="radio" name="sort_type" value="insertionSort" />
+                <label for="insertionSort">Сортировка вставками</label>
+              </li>
+              <li>
+                <input type="radio" name="sort_type" value="quickSort" />
+                <label for="quickSort">Быстрая сортировка</label>
+              </li>
+              <li>
+                <input type="radio" name="sort_type" value="bubbleSort" />
+                <label for="bubbleSort">Сортировка пузырьком</label>
+              </li>
+            </ul>
+            <input type="submit" value="Сортировать по возрастанию" />
+          </form>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Поиск элемента</legend>
+
+        <div class="block searching">
+          <form class="form">
+            <label for="search_element"> Введите элемент для поиска: </label>
+            <input type="text" id="search_elem" name="search_elem" />
+            <br />
+            <select id="search_method">
+              <option value="">Выберете метод поиска</option>
+              <option value="linear_search">Линейный поиск</option>
+              <option value="binary_search">Бинарный поиск</option>
+              <option value="max_search">Поиск максимального значения</option>
+            </select>
+            <button id="find_element">Найти элемент</button>
+          </form>
+        </div>
+      </fieldset>
+      <div class="block text-result">
+        <fieldset>
+          <legend>Статистика</legend>
+        </fieldset>
+      </div>
+      <div class="block grafic-result"></div>
+      <fieldset>
+        <legend>Анализ</legend>
+      </fieldset>
+    </div>
+  </body>
+</html>
