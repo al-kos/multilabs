@@ -1,5 +1,6 @@
 require('dotenv').config()
 const readline = require('node:readline')
+const process = require('node:process')
 
 let rl = readline.createInterface({
   input: process.stdin,

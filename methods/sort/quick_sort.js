@@ -1,9 +1,3 @@
-const RandomArrayGenerator = require('../../classes/RandomArrayGenerator')
-
-let randomArrayGenerator = new RandomArrayGenerator(100, -10, 10)
-
-let randomArray = randomArrayGenerator.generateRandomArray()
-
 function quickSort(arr) {
   // Условие остановки, выхода из рекурсии, возвращем массив с 1 элементом
   if (arr.length < 2) {
@@ -27,7 +21,4 @@ function quickSort(arr) {
   return quickSort(left).concat(pivot, quickSort(right))
 }
 
-console.log(
-  `Исходный массив отсортирован по возрастанию методом быстрой сортировки\n`,
-  quickSort(randomArray),
-)
+module.exports = quickSort

@@ -5,19 +5,27 @@ class RandomArrayGenerator {
     this.maxLimit = maxLimit
   }
 
+  generateRandomInteger() {
+    return Math.floor(Math.random() * (this.lenLimit * this.maxLimit))
+  }
+
   generateRandomArray() {
-    // Создание случайного числа элементов в массиве
-    let randomCount = Math.floor(Math.random() * this.lenLimit * this.maxLimit)
-    // Создание массива
+    let randomCount = this.generateRandomInteger()
     let array = Array(randomCount)
-    // Заполнения массива случайными целыми числами
+
     for (let i = 0; i < randomCount; i++) {
       array[i] =
         Math.floor(Math.random() * (this.maxLimit - this.minLimit + 1)) +
         this.minLimit
     }
+    return array
+  }
+}
+
+module.exports = RandomArrayGenerator
+
+/*
     console.log(`Длина массива: ${array.length}`)
-    // Проверка количества элементов и их вывод
     if (array.length <= 20) console.log(`Итоговый массив: ${array}`)
     else {
       console.log(
@@ -27,8 +35,4 @@ class RandomArrayGenerator {
         )}\nПоследние 10 элементов: ${array.slice(-10)}`,
       )
     }
-    return array
-  }
-}
-
-module.exports = RandomArrayGenerator
+*/

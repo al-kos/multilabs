@@ -1,9 +1,3 @@
-const RandomArrayGenerator = require('../../classes/RandomArrayGenerator')
-
-let randomArrayGenerator = new RandomArrayGenerator(100, -10, 10)
-
-let randomArray = randomArrayGenerator.generateRandomArray()
-
 function linearSearchWithWhile(array, element) {
   console.log(`Поиск элемента = ${element}. Цикл while.`)
 
@@ -33,5 +27,7 @@ function linearSearchWithFor(array, element) {
   return -1
 }
 
-linearSearchWithWhile(randomArray, 4)
-linearSearchWithFor(randomArray, 4)
+module.exports = {
+  linearSearchWithWhile,
+  linearSearchWithFor
+}

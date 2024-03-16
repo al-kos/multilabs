@@ -1,9 +1,3 @@
-const RandomArrayGenerator = require('../../classes/RandomArrayGenerator')
-
-let randomArrayGenerator = new RandomArrayGenerator(100, -10, 10)
-
-let randomArray = randomArrayGenerator.generateRandomArray()
-
 function findMaxElement(arr) {
   let maxElement = arr[0]
 
@@ -13,10 +7,16 @@ function findMaxElement(arr) {
     }
   }
   console.log(`Максимальный элемент (кастомный метод): ${maxElement}`)
+  return maxElement
 }
 
-findMaxElement(randomArray)
+function findMaxElementStandart(arr) {
+  let max = Math.max(...randomArray.filter((element) => element !== undefined))
+  console.log(`Максимальный элемент (стандартый метод): ${max}`)
+  return max
+}
 
-let max = Math.max(...randomArray.filter((element) => element !== undefined))
-
-console.log(`Максимальный элемент (стандартый метод): ${max}`)
+module.exports = {
+  findMaxElement,
+  findMaxElementStandart,
+}

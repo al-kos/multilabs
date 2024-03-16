@@ -1,9 +1,3 @@
-const RandomArrayGenerator = require('../../classes/RandomArrayGenerator')
-
-let randomArrayGenerator = new RandomArrayGenerator(100, -10, 10)
-
-let randomArray = randomArrayGenerator.generateRandomArray()
-
 function selectionSort(array) {
   for (i = 0; i < array.length; i++) {
     let min_index = i
@@ -21,4 +15,4 @@ function selectionSort(array) {
   return array
 }
 
-selectionSort(randomArray)
+module.exports = selectionSort
