@@ -23,16 +23,3 @@ class RandomArrayGenerator {
 }
 
 module.exports = RandomArrayGenerator
-
-/*
-    console.log(`Длина массива: ${array.length}`)
-    if (array.length <= 20) console.log(`Итоговый массив: ${array}`)
-    else {
-      console.log(
-        `Итоговый массив содержит более 20 элементов.\nПервые 10 элементов: ${array.slice(
-          0,
-          10,
-        )}\nПоследние 10 элементов: ${array.slice(-10)}`,
-      )
-    }
-*/
