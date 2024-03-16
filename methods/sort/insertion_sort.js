@@ -1,9 +1,3 @@
-const RandomArrayGenerator = require('../../classes/RandomArrayGenerator')
-
-let randomArrayGenerator = new RandomArrayGenerator(100, -10, 10)
-
-let randomArray = randomArrayGenerator.generateRandomArray()
-
 function insertionSort(array) {
   for (i = 1; i < array.length; i++) {
     let tmp = array[i]
@@ -19,4 +13,5 @@ function insertionSort(array) {
   )
   return array
 }
-insertionSort(randomArray)
+
+module.exports = insertionSort

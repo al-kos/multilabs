@@ -1,13 +1,3 @@
-const RandomArrayGenerator = require('../../classes/RandomArrayGenerator')
-
-let randomArrayGenerator = new RandomArrayGenerator(100, -10, 10)
-
-let randomArray = randomArrayGenerator.generateRandomArray()
-
-let sortedRandomArray = randomArray.sort((a, b) => a - b)
-
-console.log(sortedRandomArray)
-
 function binarySearch(array, element) {
   let low = 0
   let high = array.length - 1
@@ -16,14 +6,19 @@ function binarySearch(array, element) {
     let mid = Math.round((low + high) / 2)
     let guess = array[mid]
     if (guess == element) {
+      console.log(`Индекс искомого элемента ${element}: ${mid}`)
       return mid
     } else if (guess > element) {
       high = mid - 1
-    } else {
+    } else if (guess < element) {
       low = mid + 1
+    } else {
+      console.log(`Элемент ${element} не найден`)
+      return -1
     }
-    return -1
   }
+  console.log(`Элемент ${element} не найден`)
+  return -1
 }
 
-binarySearch(sortedRandomArray, 5)
+module.exports = binarySearch

@@ -1,9 +1,3 @@
-const RandomArrayGenerator = require('../../classes/RandomArrayGenerator')
-
-let randomArrayGenerator = new RandomArrayGenerator(100, -10, 10)
-
-let randomArray = randomArrayGenerator.generateRandomArray()
-
 function bubbleSort(array) {
   for (i = 0; i < array.length; i++) {
     for (j = 0; j < array.length - 1; j++) {
@@ -19,4 +13,5 @@ function bubbleSort(array) {
   )
   return array
 }
-bubbleSort(randomArray)
+
+module.exports = bubbleSort
