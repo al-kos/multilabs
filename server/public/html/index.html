@@ -25,7 +25,7 @@
           Формирование массива случайных целых чисел заданного размера
         </legend>
         <div class="block input">
-          <form class="form" id="user_data">
+          <form class="form" id="user_data" method="post">
             <input type="text" id="lenLimit" name="lenLimit" />
             <label for="lenLimit"> Введите ограничение длины массива: </label>
 
@@ -44,12 +44,13 @@
             <input type="text" id="maxLimit" name="maxLimit" /><br /><br />
             <input type="submit" value="Сгенерировать массив" />
           </form>
+          <div id="result"></div>
         </div>
       </fieldset>
       <fieldset>
         <legend>Сортировка массива</legend>
         <div class="block sorting">
-          <form class="form" id="sorting">
+          <form class="form" id="sorting" method="post">
             <ul>
               <li>
                 <input
@@ -96,7 +97,7 @@
         <legend>Поиск элемента</legend>
 
         <div class="block searching">
-          <form class="form" id="searching">
+          <form class="form" id="searching" method="post">
             <label for="search_element"> Введите элемент для поиска: </label>
             <input type="text" id="search_element" name="search_element" />
             <br />
