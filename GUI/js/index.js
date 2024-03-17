@@ -7,6 +7,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const lenLimit = document.getElementById('lenLimit').value
     const minLimit = document.getElementById('minLimit').value
     const maxLimit = document.getElementById('maxLimit').value
+    console.log(
+      'Свормирован новый объект из класса, свормирован и отображен массив в зависимости от количества элементов',
+    )
   })
   // Обработка событий формы сортировки массива
   document.getElementById('sorting').addEventListener('submit', (event) => {
@@ -20,16 +23,18 @@ document.addEventListener('DOMContentLoaded', () => {
     // Сортировка массива
     switch (sortType) {
       case 'selectionSort':
-        array.selectionSort()
+        console.log('Выбран тип сортировки, появления результата сортировки')
+        console.log(sortType)
+        // array.selectionSort()
         break
       case 'insertionSort':
-        array.insertionSort()
+        // array.insertionSort()
         break
       case 'quickSort':
-        array.quickSort()
+        // array.quickSort()
         break
       case 'bubbleSort':
-        array.bubbleSort()
+        // array.bubbleSort()
         break
     }
   })
@@ -38,21 +43,22 @@ document.addEventListener('DOMContentLoaded', () => {
     event.preventDefault()
 
     // Получение значения элемента для поиска
-    const searchElement = document.getElementById('search_elem').value
-
+    const searchElement = document.getElementById('search_element').value
+    console.log('Searck elem', searchElement)
     // Получение выбранного метода поиска
     const searchMethod = document.getElementById('search_method').value
 
     // Поиск элемента в массиве
     switch (searchMethod) {
       case 'linear_search':
-        array.linearSearch(searchElement)
+        console.log('Выбран тип поиска, появления результата поиска')
+        // array.linearSearch(searchElement)
         break
       case 'binary_search':
-        array.binarySearch(searchElement)
+        // array.binarySearch(searchElement)
         break
       case 'max_search':
-        array.maxSearch()
+        // array.maxSearch()
         break
     }
   })
