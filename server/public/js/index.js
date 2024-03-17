@@ -7,9 +7,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const lenLimit = document.getElementById('lenLimit').value
     const minLimit = document.getElementById('minLimit').value
     const maxLimit = document.getElementById('maxLimit').value
-    console.log(
-      'Свормирован новый объект из класса, свормирован и отображен массив в зависимости от количества элементов',
-    )
+
+    const userData = {
+      lenLimit: Number(lenLimit),
+      minLimit: Number(minLimit),
+      maxLimit: Number(maxLimit),
+    }
+    console.log(userData)
+    // Отправка объекта на сервер
+    fetch('http://localhost:5000', {
+      method: 'POST',
+      body: JSON.stringify(userData),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
   })
   // Обработка событий формы сортировки массива
   document.getElementById('sorting').addEventListener('submit', (event) => {
