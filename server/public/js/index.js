@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', async () => {
+document.addEventListener('DOMContentLoaded', () => {
   // Обработка событий формы генерации массива
   document
     .getElementById('user_data')
@@ -15,7 +15,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         minLimit: Number(minLimit),
         maxLimit: Number(maxLimit),
       }
-      console.log(userData)
       // Отправка объекта на сервер
       const response = await fetch('http://localhost:5000', {
         method: 'POST',
@@ -25,7 +24,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         },
       })
       const data = await response.json()
-      console.log('Success:', data)
+      //!!!!!!!!!!!!!! OUT RESULT
       document.getElementById('result').innerText = JSON.stringify(
         data.randomArray,
       )
@@ -37,33 +36,10 @@ document.addEventListener('DOMContentLoaded', async () => {
       event.preventDefault()
 
       // Получение выбранного метода сортировки
-      const sortType = document.querySelector(
+      const user_selection_sort = document.querySelector(
         'input[name="sort_type"]:checked',
       ).value
 
-      let user_selection_sort
-
-      // Сортировка массива
-      switch (sortType) {
-        case 'selectionSort':
-          user_selection_sort = sortType
-          // array.selectionSort()
-          break
-        case 'insertionSort':
-          user_selection_sort = sortType
-          // array.insertionSort()
-          break
-        case 'quickSort':
-          user_selection_sort = sortType
-          // array.quickSort()
-          break
-        case 'bubbleSort':
-          user_selection_sort = sortType
-          // array.bubbleSort()
-          break
-      }
-
-      console.log(user_selection_sort)
       // Отправка объекта на сервер
       const response = await fetch('http://localhost:5000', {
         method: 'POST',
@@ -72,34 +48,29 @@ document.addEventListener('DOMContentLoaded', async () => {
           'Content-Type': 'application/json',
         },
       })
+      //!!!!!!!!!!!!!! OUT RESULT NEED ADD EMPTY DIV WITH ID
       const data = await response.json()
-      console.log('Success:', data)
-      // document.getElementById('result').innerText = JSON.stringify(
-      //   data.randomArray,
-      // )
     })
   // Обработка событий формы поиска элемента
-  document.getElementById('searching').addEventListener('submit', (event) => {
-    event.preventDefault()
+  document
+    .getElementById('searching')
+    .addEventListener('submit', async (event) => {
+      event.preventDefault()
 
-    // Получение значения элемента для поиска
-    const searchElement = document.getElementById('search_element').value
-    console.log('Searck elem', searchElement)
-    // Получение выбранного метода поиска
-    const searchMethod = document.getElementById('search_method').value
+      // Получение значения элемента для поиска
+      const searchElement = document.getElementById('search_element').value
+      // Получение выбранного метода поиска
+      let user_selection_search = document.getElementById('search_type').value
 
-    // Поиск элемента в массиве
-    switch (searchMethod) {
-      case 'linear_search':
-        console.log('Выбран тип поиска, появления результата поиска')
-        // array.linearSearch(searchElement)
-        break
-      case 'binary_search':
-        // array.binarySearch(searchElement)
-        break
-      case 'max_search':
-        // array.maxSearch()
-        break
-    }
-  })
+      // Отправка объекта на сервер
+      const response = await fetch('http://localhost:5000', {
+        method: 'POST',
+        body: JSON.stringify(searchElement, user_selection_search),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      //!!!!!!!!!!!!!! OUT RESULT NEED ADD EMPTY DIV WITH ID
+      const data = await response.json()
+    })
 })
