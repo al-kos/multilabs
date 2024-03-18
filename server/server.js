@@ -22,56 +22,67 @@ app.post('/', (req, res) => {
   /*Если в бади есть свойство, то делай это, если есть другое - то другое. 
   А итоговую кнопку нужно повесить на другой роутер*/
   let body = req.body
-
-  let randomArrayGenerator = new RandomArrayGenerator(
-    body.lenLimit,
-    body.minLimit,
-    body.maxLimit,
-  )
-  const randomArray = randomArrayGenerator.generateRandomArray()
-
+  console.log(body.lenLimit)
+  let randomArray = []
   let sortedArray = []
-  let searchedElementIndex
+  let searchedElementIndex = null
+
+  if (body.lenLimit && body.minLimit && body.maxLimit) {
+    randomArray = new RandomArrayGenerator(
+      body.lenLimit,
+      body.minLimit,
+      body.maxLimit,
+    ).generateRandomArray()
+    console.log('Массив сформирован')
+  } else {
+    console.log('Косяк ввода или генератора')
+  }
 
   if (body.user_selection_sort) {
     let sorting = new Sorting(randomArray.slice(0))
+    console.log(sorting)
     // Сортировка массива
     switch (body.user_selection_sort) {
       case 'selectionSort':
-        sortedArray = Sorting.selectionSort()
+        sortedArray = sorting.selectionSort()
         break
       case 'insertionSort':
-        sortedArray = Sorting.insertionSort()
+        sortedArray = sorting.insertionSort()
         break
       case 'quickSort':
-        sortedArray = Sorting.quickSort()
+        sortedArray = sorting.quickSort()
         break
       case 'bubbleSort':
-        sortedArray = Sorting.bubbleSort()
+        sortedArray = sorting.bubbleSort()
         break
     }
+  } else {
+    console.log('Косяк сортировки')
   }
 
-  if (body.searchElement & body.user_selection_search) {
-    let sorting = new Searching(randomArray.slice(0), body.searchElement)
+  if (body.searchElement && body.user_selection_search) {
+    let searching = new Searching(randomArray.slice(0), body.searchElement)
     // Поиск элемента в массиве
+    console.log(searching)
     switch (body.user_selection_search) {
       case 'linearSearchWithWhile':
-        searchedElementIndex = sorting.linearSearchWithWhile()
+        searchedElementIndex = searching.linearSearchWithWhile()
         break
       case 'linearSearchWithFor':
-        searchedElementIndex = sorting.linearSearchWithFor()
+        searchedElementIndex = searching.linearSearchWithFor()
         break
       case 'binary_search':
-        searchedElementIndex = sorting.binarySearch()
+        searchedElementIndex = searching.binarySearch()
         break
     }
+  } else {
+    console.log('Косяк поиска')
   }
+
   res.json({
     randomArray: randomArray,
-    sortedArray: sortedArray,
-    searchedElementIndex: searchedElementIndex,
   })
+  console.log(randomArray)
 })
 
 app.listen(5000, () => {
