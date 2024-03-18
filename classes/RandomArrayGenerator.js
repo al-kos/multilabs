@@ -6,7 +6,7 @@ class RandomArrayGenerator {
   }
 
   generateRandomInteger() {
-    return Math.floor(Math.random() * (this.lenLimit * this.maxLimit))
+    return Math.floor(Math.random() * this.lenLimit)
   }
 
   generateRandomArray() {

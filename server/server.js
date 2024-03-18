@@ -76,10 +76,7 @@ app.post('/', (req, res) => {
         searchedElementIndex = searching.binarySearch()
         break
     }
-  } else {
-    console.log('Косяк поиска')
   }
-
   res.json({
     randomArray: randomArray,
   })
