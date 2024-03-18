@@ -34,22 +34,12 @@ a, li{
 }
 
 .container {  
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr;
-  gap: 5% 5%;
-  grid-auto-flow: row;
-  justify-content: space-around;
-  align-content: space-around;
-  justify-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  grid-template-areas:
-    "input-block input-block"
-    "sort-block search-block"
-    "text-result-block text-result-block"
-    "grafic-result-block grafic-result-block";
-  width: 95%;
-  min-width: 300px;
+  width: 100%;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 1em;
   color: var(--secondaryTextColor);
