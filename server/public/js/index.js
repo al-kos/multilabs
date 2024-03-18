@@ -1,3 +1,7 @@
+let lenLimit = null
+let minLimit = null
+let maxLimit = null
+
 document.addEventListener('DOMContentLoaded', () => {
   // Обработка событий формы генерации массива
   document
@@ -6,9 +10,9 @@ document.addEventListener('DOMContentLoaded', () => {
       event.preventDefault()
 
       // Получение значений полей ввода
-      const lenLimit = document.getElementById('lenLimit').value
-      const minLimit = document.getElementById('minLimit').value
-      const maxLimit = document.getElementById('maxLimit').value
+      lenLimit = document.getElementById('lenLimit').value
+      minLimit = document.getElementById('minLimit').value
+      maxLimit = document.getElementById('maxLimit').value
 
       const userData = {
         lenLimit: Number(lenLimit),
@@ -36,20 +40,25 @@ document.addEventListener('DOMContentLoaded', () => {
       event.preventDefault()
 
       // Получение выбранного метода сортировки
-      const user_selection_sort = document.querySelector(
-        'input[name="sort_type"]:checked',
-      ).value
-
+      const userSortData = {
+        user_selection_sort: document.querySelector(
+          'input[name="sort_type"]:checked',
+        ).value,
+      }
+      console.log(userSortData)
       // Отправка объекта на сервер
       const response = await fetch('http://localhost:5000', {
         method: 'POST',
-        body: JSON.stringify(user_selection_sort),
+        body: JSON.stringify(userSortData),
         headers: {
           'Content-Type': 'application/json',
         },
       })
       //!!!!!!!!!!!!!! OUT RESULT NEED ADD EMPTY DIV WITH ID
       const data = await response.json()
+      document.getElementById('result').innerText = JSON.stringify(
+        data.randomArray,
+      )
     })
   // Обработка событий формы поиска элемента
   document
@@ -57,20 +66,22 @@ document.addEventListener('DOMContentLoaded', () => {
     .addEventListener('submit', async (event) => {
       event.preventDefault()
 
-      // Получение значения элемента для поиска
-      const searchElement = document.getElementById('search_element').value
-      // Получение выбранного метода поиска
-      let user_selection_search = document.getElementById('search_type').value
-
+      userSearchData = {
+        // Получение значения элемента для поиска
+        searchElement: document.getElementById('search_element').value,
+        // Получение выбранного метода поиска
+        user_selection_search: document.getElementById('search_type').value,
+      }
       // Отправка объекта на сервер
       const response = await fetch('http://localhost:5000', {
         method: 'POST',
-        body: JSON.stringify(searchElement, user_selection_search),
+        body: JSON.stringify(userSearchData),
         headers: {
           'Content-Type': 'application/json',
         },
       })
       //!!!!!!!!!!!!!! OUT RESULT NEED ADD EMPTY DIV WITH ID
       const data = await response.json()
+      console.log(data)
     })
 })
