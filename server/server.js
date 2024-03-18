@@ -1,13 +1,14 @@
-/*Если в бади есть свойство, то делай это, если есть другое - то другое. 
-  А итоговую кнопку нужно повесить на другой роутер*/
 require('dotenv').config()
+
 const readline = require('node:readline')
 const process = require('node:process')
 const { performance } = require('node:perf_hooks')
+
 const RandomArrayGenerator = require('../classes/RandomArrayGenerator')
 const Sorting = require('../classes/Sorting')
 const Searching = require('../classes/Searching')
 const Monitoring = require('../classes/Monitoring')
+
 const express = require('express')
 const app = express()
 
@@ -86,5 +87,5 @@ app.post('/', (req, res) => {
 })
 
 app.listen(5000, () => {
-  console.log('Сервер запущен на порту 5000')
+  console.log('Сервер запущен, порт 5000')
 })

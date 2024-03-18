@@ -26,7 +26,7 @@ class Searching {
   linearSearchWithFor() {
     console.log(`Поиск элемента = ${this.element}. Цикл for.`)
 
-    for (i = 0; i < this.array.length; i++) {
+    for (let i = 0; i < this.array.length; i++) {
       if (this.array[i] == this.element) {
         console.log(`Индекс искомого элемента ${this.element}: ${i}`)
         return i
