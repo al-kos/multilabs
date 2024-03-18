@@ -3,17 +3,20 @@ const inquirer = require('inquirer')
 const process = require('node:process')
 const { performance } = require('node:perf_hooks')
 const RandomArrayGenerator = require('./classes/RandomArrayGenerator')
+const Sorting = require('./classes/Sorting')
+const Searching = require('./classes/Searching')
+const Monitoring = require('./classes/Monitoring')
 
 let lenLimit = null
 let minLimit = null
 let maxLimit = null
 let randomArray = []
+let sortedArray = []
+let user_selection_sort = ''
 
 async function getUserInput() {
-  // Функция `getUserInput` используется для получения пользовательского ввода
-  // с помощью библиотеки inquirerjs.
-  // Она возвращает промис, который разрешается, когда пользователь вводит все
-  // необходимые значения.
+  // Функция `getUserInput` используется для получения пользовательского ввода с помощью библиотеки inquirerjs.
+  // Она возвращает промис, который разрешается, когда пользователь вводит все необходимые значения.
   return inquirer
     .prompt([
       {
@@ -72,9 +75,57 @@ async function getRandomArray() {
   }
 }
 
+async function getUserSortType() {
+  return inquirer
+    .prompt([
+      {
+        type: 'list',
+        name: 'user_selection_sort',
+        message: 'Выберите тип сортировки:',
+        choices: ['selectionSort', 'insertionSort', 'quickSort', 'bubbleSort'],
+      },
+    ])
+    .then((answer) => {
+      // Если промис разрешается успешно, то мы получаем ответы пользователя
+      // и присваиваем их соответствующим переменным.
+      user_selection_sort = answer.user_selection_sort
+      return user_selection_sort
+    })
+    .catch((error) => {
+      console.log('Ошибка при чтении ввода: ' + error)
+      process.exit(0)
+    })
+}
+
+async function getSortedArray() {
+  user_selection_sort = await getUserSortType()
+  let sorting = new Sorting(randomArray.slice(0))
+  console.log(user_selection_sort)
+  console.log(sorting)
+  // Сортировка массива
+  switch (user_selection_sort) {
+    case 'selectionSort':
+      sortedArray = sorting.selectionSort()
+      break
+    case 'insertionSort':
+      sortedArray = sorting.insertionSort()
+      break
+    case 'quickSort':
+      sortedArray = sorting.quickSort()
+      console.log('this')
+      break
+    case 'bubbleSort':
+      sortedArray = sorting.bubbleSort()
+      break
+  }
+  console.log(`Сортированный массив: ${sortedArray}`)
+}
+
+// Функция `main` является точкой входа в программу и запускает все остальные функции
 async function main() {
-  // Функция `main` является точкой входа в программу и запускает все остальные функции
+  // await getUserInput()
   await getRandomArray()
+  await getSortedArray()
   process.exit(0)
 }
 
