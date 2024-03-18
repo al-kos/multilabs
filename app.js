@@ -10,9 +10,12 @@ const Monitoring = require('./classes/Monitoring')
 let lenLimit = null
 let minLimit = null
 let maxLimit = null
+let searchElementData = {}
+let searchedElementIndex = null
 let randomArray = []
 let sortedArray = []
 let user_selection_sort = ''
+let user_selection_search = ''
 
 async function getUserInput() {
   // Функция `getUserInput` используется для получения пользовательского ввода с помощью библиотеки inquirerjs.
@@ -100,8 +103,6 @@ async function getUserSortType() {
 async function getSortedArray() {
   user_selection_sort = await getUserSortType()
   let sorting = new Sorting(randomArray.slice(0))
-  console.log(user_selection_sort)
-  console.log(sorting)
   // Сортировка массива
   switch (user_selection_sort) {
     case 'selectionSort':
@@ -112,20 +113,106 @@ async function getSortedArray() {
       break
     case 'quickSort':
       sortedArray = sorting.quickSort()
-      console.log('this')
       break
     case 'bubbleSort':
       sortedArray = sorting.bubbleSort()
       break
   }
-  console.log(`Сортированный массив: ${sortedArray}`)
+  if (randomArray.length <= 20) {
+    console.log(`Итоговый отсортированный массив: ${sortedArray}`)
+  } else {
+    console.log(
+      `Итоговый отсортированный массив содержит более 20 элементов.\nПервые 10 элементов: ${sortedArray.slice(
+        0,
+        10,
+      )}\nПоследние 10 элементов: ${sortedArray.slice(-10)}`,
+    )
+  }
+}
+
+async function getUserSearchElement() {
+  return inquirer
+    .prompt([
+      {
+        type: 'input',
+        name: 'searchElement',
+        message: 'Введите элемент для поиска:',
+      },
+      {
+        type: 'list',
+        name: 'user_selection_search',
+        message: 'Выберите тип сортировки:',
+        choices: [
+          'linearSearchWithWhile',
+          'linearSearchWithFor',
+          'binary_search',
+        ],
+      },
+    ])
+    .then((answers) => {
+      return answers
+    })
+    .catch((error) => {
+      console.log('Ошибка при чтении ввода: ' + error)
+      process.exit(0)
+    })
+}
+
+async function getSearchElementIndex() {
+  searchElementData = await getUserSearchElement()
+
+  let unSortSearching = new Searching(
+    randomArray.slice(0),
+    Number(searchElementData.searchElement),
+  )
+
+  let sortSearching = new Searching(
+    sortedArray.slice(0),
+    Number(searchElementData.searchElement),
+  )
+
+  console.log(
+    `Поиск индекса элемента ${searchElementData.searchElementData} в несортированном массиве`,
+  )
+  switch (searchElementData.user_selection_search) {
+    case 'linearSearchWithWhile':
+      searchedElementIndex = unSortSearching.linearSearchWithWhile()
+      console.log(`Индекс искомого элемента: ${searchedElementIndex}`)
+      break
+    case 'linearSearchWithFor':
+      searchedElementIndex = unSortSearching.linearSearchWithFor()
+      console.log(`Индекс искомого элемента: ${searchedElementIndex}`)
+      break
+    case 'binary_search':
+      searchedElementIndex = unSortSearching.binarySearch()
+      console.log(`Индекс искомого элемента: ${searchedElementIndex}`)
+      break
+  }
+
+  console.log(
+    `Поиск индекса элемента ${searchElementData.searchElementData} в сортированном массиве`,
+  )
+  switch (searchElementData.user_selection_search) {
+    case 'linearSearchWithWhile':
+      searchedElementIndex = sortSearching.linearSearchWithWhile()
+      console.log(`Индекс искомого элемента: ${searchedElementIndex}`)
+      break
+    case 'linearSearchWithFor':
+      searchedElementIndex = sortSearching.linearSearchWithFor()
+      console.log(`Индекс искомого элемента: ${searchedElementIndex}`)
+      break
+    case 'binary_search':
+      searchedElementIndex = sortSearching.binarySearch()
+      console.log(`Индекс искомого элемента: ${searchedElementIndex}`)
+      break
+  }
 }
 
 // Функция `main` является точкой входа в программу и запускает все остальные функции
 async function main() {
-  // await getUserInput()
   await getRandomArray()
   await getSortedArray()
+  await getSearchElementIndex()
   process.exit(0)
 }
 
