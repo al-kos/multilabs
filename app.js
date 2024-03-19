@@ -118,9 +118,10 @@ async function getSortedArray() {
       monitoring = new Monitoring(sorting.insertionSort()).fnMemo()
       break
     case 'quickSort':
-      sortedArray = sorting.quickSort()
-      monitoring = new Monitoring(sorting.quickSort()).fnTimer()
-      monitoring = new Monitoring(sorting.quickSort()).fnMemo()
+      console.log(`Сломалось...`)
+      sortedArray = sorting.quickSort(randomArray)
+      // monitoring = new Monitoring(sorting.quickSort()).fnTimer()
+      // monitoring = new Monitoring(sorting.quickSort()).fnMemo()
       break
     case 'bubbleSort':
       sortedArray = sorting.bubbleSort()
