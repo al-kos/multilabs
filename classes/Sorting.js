@@ -49,7 +49,7 @@ class Sorting {
       }
     }
     // Рекурсивно повторяем процесс для новых двух массивов, текущий опорный элемент - кладем как первый в правый массив.
-    return quickSort(left).concat(pivot, quickSort(right))
+    return this.quickSort(left).concat(pivot, this.quickSort(right))
   }
 
   selectionSort() {
