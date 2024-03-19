@@ -11,11 +11,13 @@ let lenLimit = null
 let minLimit = null
 let maxLimit = null
 let searchElementData = {}
+let searchedElement = null
 let searchedElementIndex = null
 let randomArray = []
 let sortedArray = []
 let user_selection_sort = ''
 let user_selection_search = ''
+let monitoring
 
 async function getUserInput() {
   // Функция `getUserInput` используется для получения пользовательского ввода с помощью библиотеки inquirerjs.
@@ -107,15 +109,23 @@ async function getSortedArray() {
   switch (user_selection_sort) {
     case 'selectionSort':
       sortedArray = sorting.selectionSort()
+      monitoring = new Monitoring(sorting.selectionSort()).fnTimer()
+      monitoring = new Monitoring(sorting.selectionSort()).fnMemo()
       break
     case 'insertionSort':
       sortedArray = sorting.insertionSort()
+      monitoring = new Monitoring(sorting.insertionSort()).fnTimer()
+      monitoring = new Monitoring(sorting.insertionSort()).fnMemo()
       break
     case 'quickSort':
       sortedArray = sorting.quickSort()
+      monitoring = new Monitoring(sorting.quickSort()).fnTimer()
+      monitoring = new Monitoring(sorting.quickSort()).fnMemo()
       break
     case 'bubbleSort':
       sortedArray = sorting.bubbleSort()
+      monitoring = new Monitoring(sorting.bubbleSort()).fnTimer()
+      monitoring = new Monitoring(sorting.bubbleSort()).fnMemo()
       break
   }
   if (randomArray.length <= 20) {
@@ -160,51 +170,53 @@ async function getUserSearchElement() {
 
 async function getSearchElementIndex() {
   searchElementData = await getUserSearchElement()
+  searchedElement = Number(searchElementData.searchElement)
+  user_selection_search = searchElementData.user_selection_search
 
-  let unSortSearching = new Searching(
-    randomArray.slice(0),
-    Number(searchElementData.searchElement),
-  )
-
-  let sortSearching = new Searching(
-    sortedArray.slice(0),
-    Number(searchElementData.searchElement),
-  )
+  let unSortSearching = new Searching(randomArray.slice(0), searchedElement)
+  let sortSearching = new Searching(sortedArray.slice(0), searchedElement)
 
   console.log(
-    `Поиск индекса элемента ${searchElementData.searchElementData} в несортированном массиве`,
+    `Поиск индекса элемента ${searchedElement} в несортированном массиве`,
   )
-  switch (searchElementData.user_selection_search) {
-    case 'linearSearchWithWhile':
-      searchedElementIndex = unSortSearching.linearSearchWithWhile()
-      console.log(`Индекс искомого элемента: ${searchedElementIndex}`)
-      break
-    case 'linearSearchWithFor':
-      searchedElementIndex = unSortSearching.linearSearchWithFor()
-      console.log(`Индекс искомого элемента: ${searchedElementIndex}`)
-      break
-    case 'binary_search':
-      searchedElementIndex = unSortSearching.binarySearch()
-      console.log(`Индекс искомого элемента: ${searchedElementIndex}`)
-      break
+  if (user_selection_search === 'linearSearchWithWhile') {
+    searchedElementIndex = unSortSearching.linearSearchWithWhile()
+    monitoring = new Monitoring(
+      unSortSearching.linearSearchWithWhile(),
+    ).fnTimer()
+    monitoring = new Monitoring(
+      unSortSearching.linearSearchWithWhile(),
+    ).fnMemo()
+    console.log(`Индекс искомого элемента: ${searchedElementIndex}`)
+  } else if (user_selection_search === 'linearSearchWithFor') {
+    searchedElementIndex = unSortSearching.linearSearchWithFor()
+    monitoring = new Monitoring(unSortSearching.linearSearchWithFor()).fnTimer()
+    monitoring = new Monitoring(unSortSearching.linearSearchWithFor()).fnMemo()
+    console.log(`Индекс искомого элемента: ${searchedElementIndex}`)
+  } else if (user_selection_search === 'binary_search') {
+    console.log(`Бинарный поиск возможен только на отсортированном массиве`)
   }
 
   console.log(
-    `Поиск индекса элемента ${searchElementData.searchElementData} в сортированном массиве`,
+    `Поиск индекса элемента ${searchedElement} в сортированном массиве`,
   )
-  switch (searchElementData.user_selection_search) {
-    case 'linearSearchWithWhile':
-      searchedElementIndex = sortSearching.linearSearchWithWhile()
-      console.log(`Индекс искомого элемента: ${searchedElementIndex}`)
-      break
-    case 'linearSearchWithFor':
-      searchedElementIndex = sortSearching.linearSearchWithFor()
-      console.log(`Индекс искомого элемента: ${searchedElementIndex}`)
-      break
-    case 'binary_search':
-      searchedElementIndex = sortSearching.binarySearch()
-      console.log(`Индекс искомого элемента: ${searchedElementIndex}`)
-      break
+  if (searchElementData.user_selection_search === 'linearSearchWithWhile') {
+    searchedElementIndex = sortSearching.linearSearchWithWhile()
+    monitoring = new Monitoring(sortSearching.linearSearchWithWhile()).fnTimer()
+    monitoring = new Monitoring(sortSearching.linearSearchWithWhile()).fnMemo()
+    console.log(`Индекс искомого элемента: ${searchedElementIndex}`)
+  } else if (
+    searchElementData.user_selection_search === 'linearSearchWithFor'
+  ) {
+    searchedElementIndex = sortSearching.linearSearchWithFor()
+    monitoring = new Monitoring(sortSearching.linearSearchWithFor()).fnTimer()
+    monitoring = new Monitoring(sortSearching.linearSearchWithFor()).fnMemo()
+    console.log(`Индекс искомого элемента: ${searchedElementIndex}`)
+  } else if (searchElementData.user_selection_search === 'binary_search') {
+    searchedElementIndex = sortSearching.binarySearch()
+    monitoring = new Monitoring(sortSearching.binarySearch()).fnTimer()
+    monitoring = new Monitoring(sortSearching.binarySearch()).fnMemo()
+    console.log(`Индекс искомого элемента: ${searchedElementIndex}`)
   }
 }
 
