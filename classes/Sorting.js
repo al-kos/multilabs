@@ -29,28 +29,27 @@ class Sorting {
     return this.array
   }
 
-  quickSort() {
-    // Условие остановки, выхода из рекурсии, возвращаем массив с 1 элементом
-    if (this.array.length <= 1) {
-      return this.array
+  quickSort(arr) {
+    // Условие остановки, выхода из рекурсии, возвращем массив с 1 элементом
+    if (arr.length < 2) {
+      return arr
     }
     // Выбираем опорный элемент
-    // let pivot = this.array[Math.floor(this.array.length / 2)]
-    let pivot = this.array[0]
+    let pivot = arr[0]
     // Определяем массивы для тех, что меньше и больше опорного
-    let left = []
-    let right = []
+    const left = []
+    const right = []
 
     // Проходим циклом по всем элементам из массива и разносим их в массивы созданные ранее согласно условию, больше опорного - в правый, меньше - в левый
-    for (let i = 1; i < this.array.length; i++) {
-      if (pivot > this.array[i]) {
-        left.push(this.array[i])
+    for (let i = 1; i < arr.length; i++) {
+      if (pivot > arr[i]) {
+        left.push(arr[i])
       } else {
-        right.push(this.array[i])
+        right.push(arr[i])
       }
     }
-    // Рекурсивно повторяем для новых двух массивов, текущий опорный элемент - кладем как первый в правый массив.
-    return this.quickSort(left).concat(pivot, this.quickSort(right))
+    // Рекурсивно повторяем процесс для новых двух массивов, текущий опорный элемент - кладем как первый в правый массив.
+    return quickSort(left).concat(pivot, quickSort(right))
   }
 
   selectionSort() {
