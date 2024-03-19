@@ -26,10 +26,10 @@ document.addEventListener('DOMContentLoaded', () => {
         },
       })
       const data = await response.json()
-      //!!!!!!!!!!!!!! OUT RESULT
-      document.getElementById('result').innerText = JSON.stringify(
-        data.randomArray,
-      )
+      console.log(data.randomArray)
+      // document.getElementById('result').innerText = JSON.stringify(
+      //   data.randomArray,
+      // )
     })
   // Обработка событий формы сортировки массива
   document
