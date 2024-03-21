@@ -29,5 +29,5 @@ function linearSearchWithFor(array, element) {
 
 module.exports = {
   linearSearchWithWhile,
-  linearSearchWithFor
+  linearSearchWithFor,
 }

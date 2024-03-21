@@ -13,7 +13,7 @@ class RandomArrayGenerator {
     let randomCount = this.generateRandomInteger()
     let array = Array(randomCount)
 
-    for (let i = 0; i < randomCount; i++) {
+    for (let i = 0; i < array.length; i++) {
       array[i] =
         Math.floor(Math.random() * (this.maxLimit - this.minLimit + 1)) +
         this.minLimit
