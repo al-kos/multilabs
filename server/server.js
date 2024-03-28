@@ -10,24 +10,13 @@ const expressHbs = require('express-handlebars')
 const path = require('path')
 const hbs = require('hbs')
 const router = express.Router()
+const bodyParser = require('body-parser')
 
 const app = express()
 
-// app.engine(
-//   'hbs',
-//   expressHbs({
-//     layoutsDir: 'server/views/layouts',
-//     defaultLayout: 'layout',
-//     extname: 'hbs',
-//   }),
-// )
 app.set('view engine', 'hbs')
 
-// app.use(
-//   hbs.expressHbs({
-//     partialsDir: path.join(__dirname, 'server/views/partials'),
-//   }),
-// )
+app.use(bodyParser.urlencoded({ extended: false }))
 
 app.use(express.json())
 app.use(express.static('public'))
