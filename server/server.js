@@ -6,14 +6,27 @@ const Searching = require('../classes/Searching')
 const Monitoring = require('../classes/Monitoring')
 
 const express = require('express')
-const app = express()
+const expressHbs = require('express-handlebars')
+const path = require('path')
+const hbs = require('hbs')
 const router = express.Router()
+const bodyParser = require('body-parser')
+
+const app = express()
+
+app.set('view engine', 'hbs')
+
+app.use(bodyParser.urlencoded({ extended: false }))
 
 app.use(express.json())
 app.use(express.static('public'))
 
+// app.use('/', (req, res) => {
+//   res.render('main.hbs')
+// })
+
 app.get('/', (req, res) => {
-  res.sendFile('/views/layout.html', { root: 'public' })
+  res.sendFile('/views/layouts/layout.html', { root: 'public' })
 })
 
 app.get('/algs', (req, res) => {
@@ -23,44 +36,3 @@ app.get('/algs', (req, res) => {
 app.listen(5000, () => {
   console.log('Сервер запущен, порт 5000')
 })
-
-/*
-if (body.user_selection_sort) {
-  let sorting = new Sorting(randomArray.slice(0))
-  console.log(sorting)
-  // Сортировка массива
-  switch (body.user_selection_sort) {
-    case 'selectionSort':
-      sortedArray = sorting.selectionSort()
-      break
-    case 'insertionSort':
-      sortedArray = sorting.insertionSort()
-      break
-    case 'quickSort':
-      sortedArray = sorting.quickSort()
-      break
-    case 'bubbleSort':
-      sortedArray = sorting.bubbleSort()
-      break
-  }
-} else {
-  console.log('Косяк сортировки')
-}
-
-if (body.searchElement && body.user_selection_search) {
-  let searching = new Searching(randomArray.slice(0), body.searchElement)
-  // Поиск элемента в массиве
-  console.log(searching)
-  switch (body.user_selection_search) {
-    case 'linearSearchWithWhile':
-      searchedElementIndex = searching.linearSearchWithWhile()
-      break
-    case 'linearSearchWithFor':
-      searchedElementIndex = searching.linearSearchWithFor()
-      break
-    case 'binary_search':
-      searchedElementIndex = searching.binarySearch()
-      break
-  }
-}
-*/
