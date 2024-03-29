@@ -1,0 +1,58 @@
+    <div class="container">
+      <fieldset>
+        <legend>
+          Формирование массива случайных целых чисел заданного размера
+        </legend>
+        <form class="form" action="/algs" id="user_data" method="post">
+          <div class="block rundarr">
+            <label for="lenLimit"> Введите ограничение длины массива: </label>
+            <input
+              type="text"
+              id="lenLimit"
+              name="lenLimit"
+              type="number"
+              min="1"
+              max="10000"
+              step="10"
+              required
+            />
+          </div>
+          <br />
+          <div class="block rundarr">
+            <label for="minLimit">
+              Введите минимальное ограничение значения элемента массива:
+            </label>
+            <input
+              type="text"
+              id="minLimit"
+              name="minLimit"
+              type="number"
+              required
+            />
+          </div>
+          <br />
+          <div class="block rundarr">
+            <label for="maxLimit">
+              Введите максимальное ограничение значения элемента массива:
+            </label>
+            <input
+              type="text"
+              id="maxLimit"
+              name="maxLimit"
+              type="number"
+              required
+            />
+          </div>
+          <br />
+          <input type="submit" value="Сгенерировать массив" />
+        </form>
+      </fieldset>
+    </div>
+
+{{#if someObject.A}}
+  {{#each someObject.A as |item index|}}
+    <li>{{item}}</li>
+  {{/each}}
+{{/if}}
+
+{{!-- ПОСЧИТАЛ - ОТОБРАЗИТЬ РЕЗУЛЬТАТ В ЭТОТ БЛОК ПОСЛЕ ОБРАБОТКИ СО СТОРОНЫ СЕРВЕРА --}}
