@@ -32,12 +32,24 @@ app.get('/', (req, res) => res.render('home'))
 app.get('/algs', (req, res) => res.render('algs'))
 
 app.post('/algs', (req, res) => {
-  const receivedData = req.body // Получаем данные, отправленные клиентом
-  const responseString = JSON.stringify(receivedData)
+  const { lenLimit, maxLimit, minLimit } = req.body // Получаем данные, отправленные клиентом
 
-  // Отправляем ответ в виде строки
-  res.type('text/plain')
-  res.send(responseString)
+  //Получаем массив случайных целых чисел
+  const randomArray = new RandomArrayGenerator(
+    lenLimit,
+    maxLimit,
+    minLimit,
+  ).generateRandomArray()
+
+  if (randomArray.length <= 20) {
+    res.json({ randomArray: randomArray, resultBlock: '' })
+  } else {
+    res.json({
+      first10elems: randomArray.slice(0, 10),
+      last10elems: randomArray.slice(-10),
+      resultBlock: '',
+    })
+  }
 })
 
 app.listen(5000, () => {

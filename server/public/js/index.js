@@ -9,7 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let lenLimit = document.getElementById('lenLimit').value
     let minLimit = document.getElementById('minLimit').value
     let maxLimit = document.getElementById('maxLimit').value
-    console.log(lenLimit, minLimit, maxLimit)
     // Отправка объекта на сервер
     const response = await fetch('http://localhost:5000/algs', {
       method: 'POST',
